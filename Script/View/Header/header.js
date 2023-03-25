@@ -51,7 +51,7 @@ export class Header {
     }
 
     renderBoardInfo = (numberItems, name) => {
-        document.getElementById('card-container').before(boardsInfo(numberItems, name));
+        document.getElementById('search-input').after(boardsInfo(numberItems, name));
     }
 
     removeBoardsInfo = () => {

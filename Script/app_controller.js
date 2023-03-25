@@ -138,12 +138,6 @@ export class CardController {
         this.modalForm.closeModalBoard();
     }
 
-    // deleteCard = (id) => {
-    //     this.renderCountCardstart(boardNames);
-    //     this.checkCardOnBoard(id);
-    //     const card = document.getElementById(`${id}`);
-    //     card.remove();
-    // }
 
     onBoardAction = (action, payload = undefined) => {
         switch (action) {

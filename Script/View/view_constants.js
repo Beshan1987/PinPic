@@ -1,7 +1,7 @@
 export const AddBtnNames = {
 	sendComplain: "send",
 	cancelComplain: "cancel",
-	label: "Pinterest",
+	label: "PinPic",
 	pickBoard: 'Boards',
 	deleteAllboards: 'clean all boards',
 	cleanboard: 'clean ',

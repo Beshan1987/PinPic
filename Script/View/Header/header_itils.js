@@ -13,7 +13,7 @@ export function createHeader() {
     btnLabel.setAttribute('data-header-action', `${HeaderAction.reload}`);
 
     const searchForm = document.createElement('form');
-    searchForm.classList.add('d-flex', 'w-50', 'form');
+    searchForm.classList.add('d-flex', 'w-50', 'form', 'flex-column');
     searchForm.setAttribute('data-header-action', `${HeaderAction.search}`);
     const searchInput = createSearchInput();
 

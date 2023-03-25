@@ -192,10 +192,6 @@ padding-top: calc(5vw + 100px);
    cursor: pointer;
 }
 
-header {
-   margin-bottom: 1vw;
-}
-
 .dropbtn:hover, .dropbtn:focus {
   background-color: #2980b9;
 }
@@ -234,6 +230,10 @@ header {
   display: block;  
 }
 
+.dropdown-content a:nth-child(odd){
+  background-color:#ffc107;
+}
+
 .bg-secondary{
 background-color: #fd7e14
 }
@@ -244,6 +244,10 @@ background-color: #fd7e14
 
 .dropdown-content a:hover {
   background-color: #ddd;
+  cursor: pointer;
+}
+
+#label-footer:hover{
   cursor: pointer;
 }
 
@@ -259,7 +263,6 @@ background-color: #fd7e14
   to {
     opacity: 1;
   }
-
 
 }
 .card-title {
@@ -330,10 +333,10 @@ background-color: #fd7e14
   background-size: 50%;
 }
 
-.search-info {
-  font-size: 1.5rem;
-  padding-top: 120px;
-  margin-bottom: -80px;
+#search-info, #board-info {
+  padding-top: 20px;
+  font-size: 1.5rem;    
+  margin-bottom: 0 !important;
 }
 
 #header {  
@@ -344,21 +347,26 @@ background-color: #fd7e14
   z-index: 100; 
   left: 0;
   right: 0;   
+  align-items: end;
 }
 
-#board-info{
-  padding-top: 120px;
-  text-align: center;
-  margin-bottom: -80px;
+#board-info{  
+  text-align: center;  
 }
 
 #card-container{
-  margin-top: 140px;
+  margin-top: 200px;
 }
 
 .footer-img{
   width: 50px;
 }
+
+#footer{
+  background-color: #ffc107;  
+  border-top: 2px dashed black !important;
+}
+
 .hr{
   width: 100%;
 }

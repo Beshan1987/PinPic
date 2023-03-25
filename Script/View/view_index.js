@@ -8,9 +8,6 @@ function createPinterestAppCard(header, cardList) {
 	const appCard = document.createElement('div');
 	appCard.classList.add('app-card', 'd-flex', 'flex-column');
 	appCard.setAttribute('id', 'app-card');
-	// const wrapper = document.createElement('div');
-	// wrapper.classList.add('wrap');
-	// wrapper.append(header, cardList);
 	appCard.append(header, cardList);
 	return appCard;
 }
@@ -21,7 +18,7 @@ export class View {
 	constructor({ containerId, onHeaderAction, onCardAction, onBoardAction }) {
 		this.cardList = new CardList(onCardAction);
 		this.header = new Header(onHeaderAction, onBoardAction);
-		this.footer = new Footer()
+		this.footer = new Footer();
 		this.complainModal = new ComplainModal();
 		this.BoardModal = new BoardModal();
 		this.rootContainer = document.getElementById(containerId);

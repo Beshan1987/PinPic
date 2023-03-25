@@ -18,7 +18,9 @@ export function createSearchInput() {
     input.setAttribute('type', 'text');
     input.setAttribute('data-header-action', `${HeaderAction.search}`);
     input.setAttribute('placeholder', 'search...');
+    input.setAttribute('id', 'search-input');
     input.classList.add('form-control', 'text-center', 'input-gap', 'rounded-pill');
+
 
     return input;
 }
@@ -130,7 +132,7 @@ export function addSearchElements(searchURL, amount) {
     btnContainer.append(firstBtn, prevBtn, currBtn, nextBtn, lastBtn);
 
     document.getElementById('card-container').after(btnContainer);
-    document.getElementById('card-container').before(addSearchInfo(searchURL, amount));
+    document.getElementById('search-input').after(addSearchInfo(searchURL, amount));
 }
 
 export function addSearchInfo(searchURL, amount) {
@@ -138,7 +140,6 @@ export function addSearchInfo(searchURL, amount) {
     searchInfo.setAttribute('id', `${GropuInfoBoxes.searchInfo}`);
     searchInfo.classList.add('search-info', 'container-sm', 'd-flex', 'justify-content-evenly');
 
-    console.log(searchURL);
     const searchParams = new URLSearchParams(searchURL);
     const searchQuery = searchParams.get('query');
     searchInfo.textContent = `${amount} pictures found for: "${searchQuery}"`;

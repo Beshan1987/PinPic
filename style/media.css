@@ -15,10 +15,6 @@
     padding-top: 250px !important;
   }
 
-  #board-info{
-    padding-top: 220px !important;    
-    margin-bottom: -130px !important;
-  }
   .card{
   min-width: 45% !important;
   }
@@ -34,10 +30,6 @@
     margin-top: 220px !important;
   }
 
-  .search-info {
-    padding-top: 200px !important;    
-    margin-bottom: -130px !important;
-  }
 }
 
 @media (max-width: 768px) {
@@ -59,18 +51,8 @@
 }
 
 @media(min-width:1920px){
-  #board-info{
-    padding-top: 180px !important;    
-    margin-bottom: -130px !important;
-  }
-
-  .search-info {
-    padding-top: 180px !important;    
-    margin-bottom: -130px !important;
-  }
-
   #card-container{
-    margin-top: 170px !important;
+    margin-top: 200px !important;
   }
 
 }
