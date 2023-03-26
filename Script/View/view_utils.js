@@ -158,9 +158,10 @@ let prevScrollpos = window.pageYOffset;
 window.onscroll = function () {
     let currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
-        document.getElementById("header").style.top = "0";
-    } else {
-        document.getElementById("header").style.top = "-200px";
+        console.log(window.pageYOffset)
+        document.getElementById("header").style.opacity = "1";
+    } if (prevScrollpos < currentScrollPos && window.pageYOffset > 50) {
+        document.getElementById("header").style.opacity = "0";
     }
     prevScrollpos = currentScrollPos;
 }

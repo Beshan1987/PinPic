@@ -23,13 +23,14 @@ export class ModalForm {
 
     openModal = (cardId) => {
         const card = document.getElementById(cardId);
-        this.cardModal.setAttribute('id', `${cardId}`);
+        this.cardModal.setAttribute('id', `modal-${cardId}`);
         const children = this.cardModal.childNodes;
         for (let i = 0; i < children.length; i += 1) {
             children[i].setAttribute('name', `${cardId}`)
         }
         card.append(this.cardModal);
-        this.closeModal();
+        // this.closeModal();
+        this.closeModalByClick();
         const btn = document.getElementById(`${ModalAction.deleteCard}`);
         const btnComplain = document.getElementById(`bt-${ModalAction.complain}`)
         if (!document.getElementById(`${GropuInfoBoxes.boardInfo}`)) {
@@ -41,6 +42,16 @@ export class ModalForm {
                 btn.style.display = 'block';
             }
         }
+    }
+
+    closeModalByClick() {
+        document.addEventListener('click', (event) => {
+            const withinBounderieas = event.composedPath().includes(this.cardModal);
+            console.log(withinBounderieas);
+            if (withinBounderieas) {
+                this.cardModal.remove()
+            }
+        })
     }
 
     closeModal = () => {
