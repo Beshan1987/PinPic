@@ -3,12 +3,14 @@ import { Footer } from "./Footer/footer.js";
 import { Header } from "./Header/header.js";
 import { ComplainModal } from "./ModalView/ModalAddBan/ModalComplain.js";
 import { BoardModal } from "./ModalView/ModalAddCard/ModalAddCard.js";
+import { createBtnRemoveToHeader } from "../View/view_utils.js";
+
 
 function createPinterestAppCard(header, cardList) {
 	const appCard = document.createElement('div');
 	appCard.classList.add('app-card', 'd-flex', 'flex-column');
 	appCard.setAttribute('id', 'app-card');
-	appCard.append(header, cardList);
+	appCard.append(header, cardList, createBtnRemoveToHeader());
 	return appCard;
 }
 

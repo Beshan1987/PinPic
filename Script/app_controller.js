@@ -42,7 +42,7 @@ export class CardController {
 
             if (Object.keys(this.model.pageURLs).includes(type)) {
                 button.addEventListener('click', () => {
-                    window.scrollTo({ top: 100, behavior: "smooth" });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                     this.getSearch(this.model.pageURLs[type]);
                 })
             }

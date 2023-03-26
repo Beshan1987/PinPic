@@ -154,15 +154,39 @@ export function removeSearchElements() {
     }
 }
 
+export function createBtnRemoveToHeader() {
+    const cardButton = document.createElement('button');
+    cardButton.setAttribute('id', 'return-button');
+    cardButton.setAttribute('data-card-action', 'return-button');
+    const cardImg = document.createElement('img');
+    cardImg.setAttribute('src', '././style/img/up-arrow.svg');
+    cardImg.classList.add('return-btnImg');
+    cardButton.append(cardImg);
+    cardButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    })
+
+    return cardButton;
+}
+
 let prevScrollpos = window.pageYOffset;
 window.onscroll = function () {
     let currentScrollPos = window.pageYOffset;
+    const header = document.getElementById("header");
+    const headerReturn = document.getElementById("return-button");
     if (prevScrollpos > currentScrollPos) {
         console.log(window.pageYOffset)
-        document.getElementById("header").style.opacity = "1";
+        header.style.opacity = "1";
+        headerReturn.style.opacity = "1";
     } if (prevScrollpos < currentScrollPos && window.pageYOffset > 50) {
-        document.getElementById("header").style.opacity = "0";
+        header.style.opacity = "0";
+        headerReturn.style.opacity = "0";
     }
+
+    if (window.pageYOffset > 500) {
+        headerReturn.style.opacity = "0.8";
+    } if (window.pageYOffset < 500) { headerReturn.style.opacity = "0"; }
+
     prevScrollpos = currentScrollPos;
 }
 

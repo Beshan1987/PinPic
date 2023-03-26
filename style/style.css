@@ -106,6 +106,11 @@ padding-top: calc(5vw + 100px);
   opacity: 1;
 }
 
+.return-btnImg{
+  object-fit: contain;
+  width: 80%;
+}
+
 .img-container {
   flex: 1;
   cursor: pointer;
@@ -216,6 +221,19 @@ padding-top: calc(5vw + 100px);
   margin-bottom: 0.5vw;
 }
 
+#return-button{
+  position: fixed;
+  right: 2vw;
+  bottom: 5vw;
+  z-index: 1002;
+  width: calc(40px + 5vw);
+  height: calc(40px + 5vw);
+  border-radius: 50%;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+
 .dropdown-content {
    display: none;
    position: absolute;
@@ -296,6 +314,7 @@ background-color: #fd7e14
   margin: 0 auto;  
   flex-grow: 1;
   flex: 1;
+  position: relative;
 }
 
 #btn-container{
