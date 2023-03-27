@@ -209,7 +209,7 @@ padding-top: calc(5vw + 100px);
 }
 
 #dropDownBtn {
-  margin: auto;  
+  width: 100%;
 }
 
 
@@ -243,8 +243,8 @@ padding-top: calc(5vw + 100px);
    z-index: 1;
 }
 
-#dropDownList{
-  border-radius: 10px !important;
+#dropDownList{  
+  width: 100%;  
 }
 .padding-header{
   padding: calc(5px + 1vw);
@@ -258,7 +258,7 @@ padding-top: calc(5vw + 100px);
 }
 
 .dropdown-content a:nth-child(odd){
-  background-color:#ffc107;
+  background-color:#d8d6d0;
 }
 
 .bg-secondary{
@@ -269,9 +269,18 @@ background-color: #fd7e14
   text-align: center;
 }
 
+.width-clean-btn{
+  max-width: 200px; 
+  margin-top: 10px;
+}
+
 .dropdown-content a:hover {
   background-color: #ddd;
   cursor: pointer;
+}
+
+.flex-column{
+  align-items: center;
 }
 
 #label-footer:hover{
@@ -385,7 +394,7 @@ background-color: #fd7e14
 }
 
 #card-container{
-  margin-top: 150px;
+  /* margin-top: 180px; */
 }
 
 .footer-img{

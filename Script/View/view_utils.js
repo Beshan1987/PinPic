@@ -47,13 +47,7 @@ export function createBoard() {
         boardItem.textContent = name;
         boardItem.setAttribute('id', `${name}`);
 
-        const cleanBoard = document.createElement('a');
-        cleanBoard.textContent = `${AddBtnNames.cleanboard} ${name}`;
-        cleanBoard.setAttribute('data-board-action', BoardsAction.cleanBoard);
-        cleanBoard.setAttribute('name', `${name}`);
-        cleanBoard.classList.add('font-italic')
-
-        boardDrop.append(boardItem, cleanBoard);
+        boardDrop.append(boardItem);
     }
 
     const boardItemDelete = document.createElement('a');
@@ -79,6 +73,25 @@ export function createBoard() {
     boardContainer.append(boardBtn, boardDrop);
     return boardContainer;
 }
+
+export function createCleanBtn(name) {
+    const boardInfo = document.getElementById('board-info')
+
+    const cleanBtn = document.createElement('button');
+    cleanBtn.classList.add('btn', 'btn-sm', 'btn-dark', 'width-clean-btn');
+
+    cleanBtn.setAttribute('data-board-action', BoardsAction.cleanBoard);
+    cleanBtn.setAttribute('name', `${name}`);
+    cleanBtn.textContent = `clean ${name}`;
+    cleanBtn.setAttribute('id', 'cleanBoard');
+
+    cleanBtn.addEventListener('click', () => {
+        cleanBtn.setAttribute('disabled', 'disabled');
+    })
+
+    return boardInfo.after(cleanBtn);
+}
+
 
 export function createCheckBoxesСomplain(causes) {
     const checkBoxContainerBasic = document.createElement('div');
@@ -154,6 +167,12 @@ export function removeSearchElements() {
     }
 }
 
+export function removeCleanBar() {
+    if (document.getElementById('cleanBoard')) {
+        document.getElementById('cleanBoard').remove();
+    }
+}
+
 export function createBtnRemoveToHeader() {
     const cardButton = document.createElement('button');
     cardButton.setAttribute('id', 'return-button');
@@ -175,7 +194,6 @@ window.onscroll = function () {
     const header = document.getElementById("header");
     const headerReturn = document.getElementById("return-button");
     if (prevScrollpos > currentScrollPos) {
-        console.log(window.pageYOffset)
         header.style.opacity = "1";
         headerReturn.style.opacity = "1";
     } if (prevScrollpos < currentScrollPos && window.pageYOffset > 50) {
@@ -198,7 +216,7 @@ export function errorPage(err) {
     appCard.remove();
     const errorPage = document.createElement('div');
     errorPage.classList.add('d-flex', 'justify-content-center', 'align-items-center', 'text-center', 'text-warning', 'error', 'bg-dark');
-    if (err = `SyntaxError: Unexpected token 'R', "Rate Limit Exceeded" is not valid JSON`) {
+    if (err === `SyntaxError: Unexpected token 'R', "Rate Limit Exceeded" is not valid JSON`) {
         errorPage.textContent = 'Rate Limit Exceeded. Try again later';
     } else {
         errorPage.textContent = err;

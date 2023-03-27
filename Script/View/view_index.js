@@ -51,4 +51,8 @@ export class View {
 	renderEmptyList() {
 		this.cardList.renderEmptyList();
 	}
+
+	paddingTop = () => {
+		this.cardList.paddingTop();
+	}
 }

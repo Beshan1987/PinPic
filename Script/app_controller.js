@@ -4,7 +4,7 @@ import { CardAction } from './basic_constants.js';
 import { ModalAction, boardNames, BoardsAction, HeaderAction } from './View/view_constants.js';
 import { ModalForm } from './View/ModalView/ModalForm.js';
 import { LocalStorageKey } from './Model/model_index.js';
-import { removeSearchElements } from './View/view_utils.js';
+import { removeSearchElements, createCleanBtn, removeCleanBar } from './View/view_utils.js';
 
 
 export class CardController {
@@ -28,6 +28,7 @@ export class CardController {
     }
 
     reload() {
+        removeCleanBar();
         if (document.getElementById('board-info')) {
             this.view.removeBoardsInfo();
         }
@@ -166,7 +167,6 @@ export class CardController {
             if (document.getElementById('board-info').getAttribute('name') === key) {
                 this.model.deleteCard(id, key);
                 this.view.removeBoardsInfo();
-                console.log(this.model.cardStorage.filter(element => element.nameBoard === key).length);
                 this.view.renderBoardInfo(key, this.model.cardStorage.filter(element => element.nameBoard === key).length);
                 this.renderCountCardItem(key);
             }
@@ -176,12 +176,14 @@ export class CardController {
     }
 
     returnMain = () => {
+        removeCleanBar();
         this.view.renderCards(this.model.getCards());
         this.view.removeBoardsInfo();
         removeSearchElements();
     }
 
     returnToSearch = () => {
+        removeCleanBar();
         if (this.model.linkArr.length !== 0) {
             this.view.removeBoardsInfo();
             this.getSearch(this.model.getCurrentSearchPage());
@@ -189,6 +191,7 @@ export class CardController {
     }
 
     cleanAllBoards = () => {
+        removeCleanBar();
         if (!this.model.getLocal() || this.model.getLocal().length === 0) {
             this.modalForm.openClearBoardsModalEmpty();
         }
@@ -226,7 +229,8 @@ export class CardController {
             if (this.model.cardStorage.find(element => element.nameBoard === name)) {
                 this.view.renderCards(this.model.getLocal().filter(element => element.nameBoard === name));
                 this.view.removeBoardsInfo();
-                this.view.renderBoardInfo(name, numberCards)
+                this.view.renderBoardInfo(name, numberCards);
+                createCleanBtn(name);
             } else this.view.renderEmptyList();
             this.view.removeBoardsInfo();
             this.view.renderBoardInfo(name, numberCards)
@@ -234,9 +238,11 @@ export class CardController {
             this.view.renderEmptyList();
             this.view.removeBoardsInfo(); this.view.renderBoardInfo(name, 0);
         }
+        document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
     }
 
     returnToSearch = () => {
+        removeCleanBar();
         if (this.model.linkArr.length !== 0) {
             this.view.removeBoardsInfo();
             this.getSearch(this.model.getCurrentSearchPage());

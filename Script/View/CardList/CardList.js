@@ -17,7 +17,14 @@ export class CardList {
     });
   }
 
+
+  paddingTop = () => {
+    const paddingSize = `${document.getElementById('header').offsetHeight + 50}px`;
+    return paddingSize;
+  }
+
   renderCards = (cards) => {
+    this.cardContainer.style.paddingTop = `${this.paddingTop()}`;
     this.cardContainer.innerHTML = '';
     cards.forEach((picture) => {
       this.cardContainer.append(

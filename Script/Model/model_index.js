@@ -16,7 +16,6 @@ function getSaveCards() {
     try {
         return JSON.parse(savedItems);
     } catch (err) {
-        console.error(err);
         return [];
     }
 }
@@ -31,7 +30,6 @@ function getForbiddenCards() {
     try {
         return JSON.parse(savedItems);
     } catch (err) {
-        console.error(err);
         return [];
     }
 }

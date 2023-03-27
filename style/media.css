@@ -24,12 +24,8 @@
     align-items: center;    
     justify-content: center;
   }
-  
-  #card-container{
-    margin-top: calc(150px + 10vw) !important;
-  }
-
-}
+ 
+ }
 
 @media (max-width: 768px) {
   .form {    
@@ -49,7 +45,7 @@
   }
 
   .dropdown-content a {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   #dropDownBtn{
     padding: 5px;
@@ -63,9 +59,3 @@
   }
 }
 
-@media(min-width:1920px){
-  #card-container{
-    margin-top: 200px !important;
-  }
-
-}
