@@ -21,7 +21,6 @@ export function createSearchInput() {
     input.setAttribute('id', 'search-input');
     input.classList.add('form-control', 'text-center', 'input-gap', 'rounded-pill');
 
-
     return input;
 }
 
@@ -56,29 +55,32 @@ export function createBoard() {
     boardItemDelete.classList.add('bg-danger', 'text-light');
     boardDrop.append(boardItemDelete)
 
-    const returnToTheMainPage = document.createElement('a');
-    returnToTheMainPage.textContent = AddBtnNames.deleteAllboards;
-    returnToTheMainPage.setAttribute('data-board-action', BoardsAction.returnToTheMainPage);
-    boardDrop.append(returnToTheMainPage);
-    returnToTheMainPage.textContent = `${BoardsAction.returnToTheMainPage}`;
-    returnToTheMainPage.classList.add('bg-warning', 'bg-gradient', 'fs-6');
-
     const returnToSearch = document.createElement('a');
     returnToSearch.textContent = BoardsAction.returnToSearch;
     returnToSearch.setAttribute('data-board-action', BoardsAction.returnToSearch);
     returnToSearch.classList.add('bg-warning', 'bg-gradient', 'fs-6');
     boardDrop.append(returnToSearch);
-    returnToTheMainPage.classList.add('bg-warning', 'bg-gradient', 'fs-6')
 
     boardContainer.append(boardBtn, boardDrop);
     return boardContainer;
 }
 
+export function createReturnBtnMain() {
+    const container = document.getElementById('container-btn-board');
+    const returnMainBtn = document.createElement('button');
+    returnMainBtn.classList.add('btn', 'btn-sm', 'btn-success', 'width-btn-board');
+    returnMainBtn.setAttribute('data-board-action', BoardsAction.returnToTheMainPage);
+    returnMainBtn.textContent = `${BoardsAction.returnToTheMainPage}`;
+    returnMainBtn.setAttribute('id', 'returnMain');
+
+    return container.append(returnMainBtn);
+}
+
 export function createCleanBtn(name) {
-    const boardInfo = document.getElementById('board-info')
+    const container = document.getElementById('container-btn-board');
 
     const cleanBtn = document.createElement('button');
-    cleanBtn.classList.add('btn', 'btn-sm', 'btn-dark', 'width-clean-btn');
+    cleanBtn.classList.add('btn', 'btn-sm', 'btn-dark', 'width-btn-board');
 
     cleanBtn.setAttribute('data-board-action', BoardsAction.cleanBoard);
     cleanBtn.setAttribute('name', `${name}`);
@@ -89,7 +91,7 @@ export function createCleanBtn(name) {
         cleanBtn.setAttribute('disabled', 'disabled');
     })
 
-    return boardInfo.after(cleanBtn);
+    return container.append(cleanBtn);
 }
 
 
@@ -170,6 +172,12 @@ export function removeSearchElements() {
 export function removeCleanBar() {
     if (document.getElementById('cleanBoard')) {
         document.getElementById('cleanBoard').remove();
+    }
+}
+
+export function removeReturnBtn() {
+    if (document.getElementById('returnMain')) {
+        document.getElementById('returnMain').remove();
     }
 }
 

@@ -29,7 +29,7 @@ export class ModalForm {
             children[i].setAttribute('name', `${cardId}`)
         }
         card.append(this.cardModal);
-        // this.closeModal();
+        this.closeModal();
         this.closeModalByClick();
         const btn = document.getElementById(`${ModalAction.deleteCard}`);
         const btnComplain = document.getElementById(`bt-${ModalAction.complain}`)

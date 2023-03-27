@@ -17,8 +17,11 @@ export function createHeader() {
     searchForm.setAttribute('data-header-action', `${HeaderAction.search}`);
     const searchInput = createSearchInput();
 
-    searchForm.append(searchInput);
+    const container = document.createElement('div');
+    container.setAttribute('id', 'container-btn-board')
+    container.classList.add('d-flex', 'flex-wrap', 'flex-column')
 
+    searchForm.append(searchInput, container);
     const boardDropContainer = createBoard();
 
     header.append(btnLabel, searchForm, boardDropContainer);

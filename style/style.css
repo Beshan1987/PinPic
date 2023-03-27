@@ -269,8 +269,9 @@ background-color: #fd7e14
   text-align: center;
 }
 
-.width-clean-btn{
+.width-btn-board{
   max-width: 200px;   
+  width: 100%;
 }
 
 .dropdown-content a:hover {

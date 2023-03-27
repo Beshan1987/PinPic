@@ -4,7 +4,7 @@ import { CardAction } from './basic_constants.js';
 import { ModalAction, boardNames, BoardsAction, HeaderAction } from './View/view_constants.js';
 import { ModalForm } from './View/ModalView/ModalForm.js';
 import { LocalStorageKey } from './Model/model_index.js';
-import { removeSearchElements, createCleanBtn, removeCleanBar } from './View/view_utils.js';
+import { removeSearchElements, createCleanBtn, createReturnBtnMain, removeCleanBar, removeReturnBtn } from './View/view_utils.js';
 
 
 export class CardController {
@@ -30,6 +30,7 @@ export class CardController {
     reload() {
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
         removeCleanBar();
+        removeReturnBtn();
         if (document.getElementById('board-info')) {
             this.view.removeBoardsInfo();
         }
@@ -182,11 +183,13 @@ export class CardController {
         this.view.removeBoardsInfo();
         removeSearchElements();
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
+        document.getElementById('returnMain').remove();
     }
 
     returnToSearch = () => {
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
         removeCleanBar();
+        removeReturnBtn();
         if (this.model.linkArr.length !== 0) {
             this.view.removeBoardsInfo();
             this.getSearch(this.model.getCurrentSearchPage());
@@ -194,6 +197,7 @@ export class CardController {
     }
 
     cleanAllBoards = () => {
+        removeReturnBtn();
         removeCleanBar();
         if (!this.model.getLocal() || this.model.getLocal().length === 0) {
             this.modalForm.openClearBoardsModalEmpty();
@@ -242,6 +246,9 @@ export class CardController {
         } else {
             this.view.renderEmptyList();
             this.view.removeBoardsInfo(); this.view.renderBoardInfo(name, 0);
+        }
+        if (!document.getElementById('returnMain')) {
+            createReturnBtnMain();
         }
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
     }
