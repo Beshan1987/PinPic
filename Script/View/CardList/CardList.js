@@ -19,7 +19,7 @@ export class CardList {
 
 
   paddingTop = () => {
-    const paddingSize = `${document.getElementById('header').offsetHeight + 50}px`;
+    const paddingSize = `${document.getElementById('header').clientHeight + 40}px`;
     return paddingSize;
   }
 

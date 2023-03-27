@@ -28,6 +28,7 @@ export class CardController {
     }
 
     reload() {
+        document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
         removeCleanBar();
         if (document.getElementById('board-info')) {
             this.view.removeBoardsInfo();
@@ -180,9 +181,11 @@ export class CardController {
         this.view.renderCards(this.model.getCards());
         this.view.removeBoardsInfo();
         removeSearchElements();
+        document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
     }
 
     returnToSearch = () => {
+        document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
         removeCleanBar();
         if (this.model.linkArr.length !== 0) {
             this.view.removeBoardsInfo();
@@ -230,7 +233,9 @@ export class CardController {
                 this.view.renderCards(this.model.getLocal().filter(element => element.nameBoard === name));
                 this.view.removeBoardsInfo();
                 this.view.renderBoardInfo(name, numberCards);
-                createCleanBtn(name);
+                if (!document.getElementById('cleanBoard')) {
+                    createCleanBtn(name);
+                }
             } else this.view.renderEmptyList();
             this.view.removeBoardsInfo();
             this.view.renderBoardInfo(name, numberCards)
@@ -239,14 +244,6 @@ export class CardController {
             this.view.removeBoardsInfo(); this.view.renderBoardInfo(name, 0);
         }
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
-    }
-
-    returnToSearch = () => {
-        removeCleanBar();
-        if (this.model.linkArr.length !== 0) {
-            this.view.removeBoardsInfo();
-            this.getSearch(this.model.getCurrentSearchPage());
-        } else this.returnMain()
     }
 
     checkCardOnBoard = (id) => {

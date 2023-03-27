@@ -270,8 +270,7 @@ background-color: #fd7e14
 }
 
 .width-clean-btn{
-  max-width: 200px; 
-  margin-top: 10px;
+  max-width: 200px;   
 }
 
 .dropdown-content a:hover {
@@ -281,6 +280,7 @@ background-color: #fd7e14
 
 .flex-column{
   align-items: center;
+  gap: 10px;
 }
 
 #label-footer:hover{
@@ -370,10 +370,12 @@ background-color: #fd7e14
   background-size: 50%;
 }
 
-#search-info, #board-info {
-  padding: 5px;
-  font-size: 1rem;    
+#search-info, #board-info {  
+  font-size: 1rem;
   margin-bottom: 0 !important;
+  background-color: #ffc10777;
+  border-radius: 50rem;
+  padding: 5px;
 }
 
 #header {  
