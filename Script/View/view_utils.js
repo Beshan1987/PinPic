@@ -157,7 +157,7 @@ export function addSearchInfo(searchURL, amount) {
 
     const searchParams = new URLSearchParams(searchURL);
     const searchQuery = searchParams.get('query');
-    searchInfo.textContent = `${amount} pictures found for: "${searchQuery}"`;
+    searchInfo.textContent = `${amount} pictures found for : "${searchQuery}"`;
 
     return searchInfo;
 }

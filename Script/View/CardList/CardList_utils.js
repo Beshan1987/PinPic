@@ -30,9 +30,16 @@ export function createCard(cardParams, CardAction) {
    const cardBody = document.createElement('div');
    cardBody.classList.add('card-body', 'flex-0');
 
+   const avatar = document.createElement('img');
+   avatar.setAttribute('src', cardParams.user.profile_image.large);
+   avatar.classList.add('rounded-circle');
+   avatar.setAttribute('id', 'avatar');
+
    const author = document.createElement('span');
    author.classList.add('card-title');
    author.textContent = user.name;
+   author.append(avatar);
+
 
    const cardText = document.createElement('p');
    cardText.classList.add('card-text');

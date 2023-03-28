@@ -141,6 +141,20 @@ export class CardController {
         this.modalForm.closeModalBoard();
     }
 
+    deleteCard = (id) => {
+        this.renderCountCardstart(boardNames);
+        for (let key of boardNames) {
+            if (document.getElementById('board-info').getAttribute('name') === key) {
+                this.model.deleteCard(id, key);
+                this.view.removeBoardsInfo();
+                this.view.renderBoardInfo(key, this.model.cardStorage.filter(element => element.nameBoard === key).length);
+                this.renderCountCardItem(key);
+            }
+        }
+        const card = document.getElementById(`${id}`);
+        card.remove();
+    }
+
 
     onBoardAction = (action, payload = undefined) => {
         switch (action) {
@@ -160,21 +174,6 @@ export class CardController {
                 this.returnToSearch();
                 break;
         }
-    }
-
-
-    deleteCard = (id) => {
-        this.renderCountCardstart(boardNames);
-        for (let key of boardNames) {
-            if (document.getElementById('board-info').getAttribute('name') === key) {
-                this.model.deleteCard(id, key);
-                this.view.removeBoardsInfo();
-                this.view.renderBoardInfo(key, this.model.cardStorage.filter(element => element.nameBoard === key).length);
-                this.renderCountCardItem(key);
-            }
-        }
-        const card = document.getElementById(`${id}`);
-        card.remove();
     }
 
     returnMain = () => {

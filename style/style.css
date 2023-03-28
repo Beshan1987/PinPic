@@ -223,7 +223,7 @@ padding-top: calc(5vw + 100px);
 
 #return-button{
   position: fixed;
-  right: 2vw;
+  right: 5vw;
   bottom: 5vw;
   z-index: 1002;
   width: calc(40px + 5vw);
@@ -233,6 +233,13 @@ padding-top: calc(5vw + 100px);
   opacity: 0;
 }
 
+#avatar{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+
+}
 
 .dropdown-content {
    display: none;
@@ -281,7 +288,7 @@ background-color: #fd7e14
 
 .flex-column{
   align-items: center;
-  gap: 10px;
+  gap: 1vw;
 }
 
 #label-footer:hover{
@@ -305,9 +312,10 @@ background-color: #fd7e14
 .card-title {
   font-weight: 700;
   font-size: 18px;
-  height: 25px;
+  height: 30px;
   display: block;
   overflow: hidden;
+  display: flex;  
 }
 .card-text {
   height: 45px;
@@ -406,7 +414,7 @@ background-color: #fd7e14
 
 #footer{
   background-color: #ffc107;  
-  border-top: 2px dashed black !important;
+  border-top: 2px solid black !important;
 }
 
 .hr{

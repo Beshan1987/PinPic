@@ -1,5 +1,5 @@
 import { createSearchInput, createBtn, createBoard } from '../view_utils.js';
-import { HeaderAction, AddBtnNames, BoardsAction } from '../view_constants.js';
+import { HeaderAction, AddBtnNames } from '../view_constants.js';
 
 export function createHeader() {
     const header = document.createElement('header');
@@ -36,8 +36,8 @@ export function boardsInfo(name, numberItems) {
     boardsInfo.classList.add('search-info', 'container-sm', 'd-flex', 'justify-content-evenly');
 
     if (numberItems === 0) {
-        boardsInfo.textContent = `you are on ${name}, but here nothing yet)`;
-    } else boardsInfo.textContent = `you are on ${name} with [${numberItems}] picture(s)`;
+        boardsInfo.textContent = `${name}, here nothing yet)`;
+    } else boardsInfo.textContent = `${name} [${numberItems}] picture(s)`;
 
     return boardsInfo;
 }
