@@ -24,6 +24,9 @@ export class CardController {
             case HeaderAction.reload:
                 this.reload();
                 break;
+            case HeaderAction.cleanSearch:
+                this.cleanSearch();
+                break;
         }
     }
 
@@ -35,6 +38,7 @@ export class CardController {
             this.view.removeBoardsInfo();
         }
         this.initialize();
+        document.getElementById('search-input').style.display = 'block';
     }
 
     assignNextURL() {
@@ -56,6 +60,16 @@ export class CardController {
         await this.model.getSearch(searchURL);
         this.view.renderCards(this.model.getCardsSearch());
         this.assignNextURL(this.model.pageURLs);
+    }
+
+    cleanSearch() {
+        removeCleanBar();
+        this.view.renderCards(this.model.getCards());
+        this.view.removeBoardsInfo();
+        removeSearchElements();
+        document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
+        document.getElementById('cleanSearch').remove();
+        this.model.refreshSearchData();
     }
 
     onModalAction = (action, payload = undefined, id = undefined) => {
@@ -182,10 +196,17 @@ export class CardController {
         this.view.removeBoardsInfo();
         removeSearchElements();
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
-        document.getElementById('returnMain').remove();
+        if (document.getElementById('returnMain')) {
+            document.getElementById('returnMain').remove();
+        }
+        document.getElementById('search-input').style.display = 'block';
     }
 
     returnToSearch = () => {
+        if (document.getElementById('cleanSearch')) {
+            document.getElementById('cleanSearch').style.display = 'block';
+        }
+        document.getElementById('search-input').style.display = 'block';
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
         removeCleanBar();
         removeReturnBtn();
@@ -227,8 +248,17 @@ export class CardController {
         }
     }
 
-
     loadBoard = (name) => {
+        document.getElementById('cleanBoard') ?
+            document.getElementById('cleanBoard').remove() :
+            createCleanBtn(name);
+        if (!document.getElementById('cleanBoard')) {
+            createCleanBtn(name);
+        }
+        document.getElementById('search-input').style.display = 'none';
+        if (document.getElementById('cleanSearch')) {
+            document.getElementById('cleanSearch').style.display = 'none';
+        }
         removeSearchElements();
         if (this.model.cardStorage.length > 0) {
             const numberCards = (this.model.cardStorage.filter(element => element.nameBoard === name)).length;
@@ -236,13 +266,16 @@ export class CardController {
                 this.view.renderCards(this.model.getLocal().filter(element => element.nameBoard === name));
                 this.view.removeBoardsInfo();
                 this.view.renderBoardInfo(name, numberCards);
-                if (!document.getElementById('cleanBoard')) {
-                    createCleanBtn(name);
-                }
-            } else this.view.renderEmptyList();
+            } else {
+                this.view.renderEmptyList();
+                document.getElementById('cleanBoard').remove()
+            }
             this.view.removeBoardsInfo();
             this.view.renderBoardInfo(name, numberCards)
         } else {
+            if (document.getElementById('cleanBoard')) {
+                document.getElementById('cleanBoard').remove()
+            }
             this.view.renderEmptyList();
             this.view.removeBoardsInfo(); this.view.renderBoardInfo(name, 0);
         }

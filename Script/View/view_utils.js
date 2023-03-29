@@ -94,6 +94,23 @@ export function createCleanBtn(name) {
     return container.append(cleanBtn);
 }
 
+export function createCleanSearch() {
+    const container = document.getElementById('container-btn-board');
+
+    const cleanBtn = document.createElement('button');
+    cleanBtn.classList.add('btn', 'btn-sm', 'btn-dark', 'width-btn-board');
+
+    cleanBtn.setAttribute('data-header-action', HeaderAction.cleanSearch);
+    cleanBtn.textContent = `${HeaderAction.cleanSearch}`;
+    cleanBtn.setAttribute('id', 'cleanSearch');
+
+    cleanBtn.addEventListener('click', () => {
+        cleanBtn.setAttribute('disabled', 'disabled');
+    })
+
+    return container.append(cleanBtn);
+}
+
 
 export function createCheckBoxesСomplain(causes) {
     const checkBoxContainerBasic = document.createElement('div');
@@ -147,7 +164,7 @@ export function addSearchElements(searchURL, amount) {
     btnContainer.append(firstBtn, prevBtn, currBtn, nextBtn, lastBtn);
 
     document.getElementById('card-container').after(btnContainer);
-    document.getElementById('search-input').after(addSearchInfo(searchURL, amount));
+    document.getElementById('container-btn-board').after(addSearchInfo(searchURL, amount));
 }
 
 export function addSearchInfo(searchURL, amount) {

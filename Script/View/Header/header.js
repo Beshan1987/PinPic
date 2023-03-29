@@ -1,6 +1,6 @@
 import { createHeader, boardsInfo } from './header_itils.js';
 import { HeaderAction, BoardsAction } from '../view_constants.js';
-// import { createContainerBtnBoard } from '../view_utils.js';
+import { createCleanSearch } from '../view_utils.js';
 
 
 export class Header {
@@ -24,7 +24,8 @@ export class Header {
         if (formattedValue) {
             this.onHeaderAction(HeaderAction.search, searchURL);
             this.cardContainer.children[1].reset();
-            this.removeBoardsInfo()
+            this.removeBoardsInfo();
+            createCleanSearch();
         }
     }
 
@@ -48,11 +49,15 @@ export class Header {
                 break;
             case HeaderAction.reload:
                 this.onHeaderAction(HeaderAction.reload);
+                break
+            case HeaderAction.cleanSearch:
+                this.onHeaderAction(HeaderAction.cleanSearch);
+                break
         }
     }
 
     renderBoardInfo = (numberItems, name) => {
-        document.getElementById('search-input').after(boardsInfo(numberItems, name));
+        document.getElementById('container-btn-board').after(boardsInfo(numberItems, name));
     }
 
     removeBoardsInfo = () => {

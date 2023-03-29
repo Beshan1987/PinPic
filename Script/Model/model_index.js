@@ -77,6 +77,10 @@ export class CardModel {
         return this.searchCards.slice();
     }
 
+    refreshSearchData() {
+        return this.linkArr.length = 0;
+    }
+
     saveLocal(name, id) {
         let nameBoard = { nameBoard: `${name}` }
         this.cardStorage.push({ ...this.getCards().find(card => card.id === id), ...nameBoard, ...this.getCardsSearch().find(card => card.id === id), ...nameBoard });

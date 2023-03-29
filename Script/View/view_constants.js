@@ -15,6 +15,7 @@ export const HeaderAction = {
 	search: 'search',
 	reload: "reload",
 	openDropBoard: "openDropBoard",
+	cleanSearch: 'Clean search',
 };
 
 export const ModalAction = {
@@ -45,7 +46,7 @@ export const GropuInfoBoxes = {
 }
 
 export const AlertDiscription = {
-	successAddAlert: 'successfully added this card',
+	successAddAlert: 'successfully added',
 	complainAlert: 'choose a cause of your complaint',
 	createdalAlert: 'Already added'
 }

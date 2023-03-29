@@ -47,7 +47,6 @@ export class ModalForm {
     closeModalByClick() {
         document.addEventListener('click', (event) => {
             const withinBounderieas = event.composedPath().includes(this.cardModal);
-            console.log(withinBounderieas);
             if (withinBounderieas) {
                 this.cardModal.remove()
             }
