@@ -3,5 +3,6 @@ export const CardAction = {
 	addComplain: "addComplain",
 	cancelRestriction: "cancelRestriction",
 	OpenFull: 'openFull',
-	OpenOptions: 'openOptions'
+	OpenOptions: 'openOptions',
+	openAuthorPhotos: 'openAuthorPhotos'
 };

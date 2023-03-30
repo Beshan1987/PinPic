@@ -36,6 +36,8 @@ export function createCard(cardParams, CardAction) {
    avatar.setAttribute('id', 'avatar');
 
    const author = document.createElement('span');
+   author.setAttribute('id', `${cardParams.user.links.photos}?page=1&per_page=28&client_id=b8ceCX7AhS7wQwR4YPOiDVayRsuU85elxayHop0LvN4`);
+   author.setAttribute('data-card-action', 'openAuthorPhotos');
    author.classList.add('card-title');
    author.textContent = user.name;
    author.append(avatar);

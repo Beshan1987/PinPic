@@ -27,8 +27,29 @@ export class CardController {
             case HeaderAction.cleanSearch:
                 this.cleanSearch();
                 break;
+            case HeaderAction.openDropBoard:
+                this.openBoardBtn();
+                break;
         }
     }
+
+    openBoardBtn() {
+        const boardsList = document.getElementById('dropDownList');
+        if (this.model.linkArr.length === 0) {
+            boardsList.lastElementChild.style.display = 'none';
+        } if (this.model.linkArr.length > 0) {
+            boardsList.lastElementChild.style.display = 'block';
+        }
+        boardsList.classList.toggle('show');
+        document.addEventListener('click', (event) => {
+            const boardsBtn = document.getElementById('dropDownBtn');
+            const withinBounderieas = event.composedPath().includes(boardsBtn);
+            if (!withinBounderieas && boardsList.classList.contains('show')) {
+                boardsList.classList.remove("show")
+            }
+        })
+    }
+
 
     reload() {
         document.getElementById('card-container').style.paddingTop = `${this.view.cardList.paddingTop()}`;
@@ -316,6 +337,9 @@ export class CardController {
             case CardAction.OpenOptions:
                 this.openModal(payload);
                 break;
+            case CardAction.openAuthorPhotos:
+                this.getAuthorPhotos(payload);
+                break;
         }
     }
 
@@ -325,6 +349,20 @@ export class CardController {
 
     openModal = (id) => {
         this.modalForm.openModal(id);
+    }
+
+    getAuthorPhotos(searchURL) {
+        this.model.getAuthorData(searchURL)
+            .then(
+                data => {
+                    this.model.setAuthorCards(data);
+                    this.view.renderCards(this.model.getAuthorCards());
+                    removeSearchElements();
+                    removeCleanBar();
+                })
+        if (!document.getElementById('returnMain')) {
+            createReturnBtnMain();
+        }
     }
 
     initialize() {

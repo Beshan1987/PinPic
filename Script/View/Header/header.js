@@ -1,6 +1,8 @@
 import { createHeader, boardsInfo } from './header_itils.js';
 import { HeaderAction, BoardsAction } from '../view_constants.js';
 import { createCleanSearch } from '../view_utils.js';
+import { CardModel } from "../../Model/model_index.js";
+import { createClearBoardsModalEmpty } from '../ModalView/ModalView_utils.js';
 
 
 export class Header {
@@ -12,6 +14,8 @@ export class Header {
         this.cardContainer.addEventListener('click', ({ target }) => {
             if (Object.values(BoardsAction).includes(target.dataset.boardAction)) {
                 onBoardAction(target.dataset.boardAction, target.name);
+            } if (Object.values(HeaderAction).includes(target.dataset.headerAction)) {
+                onHeaderAction(target.dataset.headerAction, target.name);
             }
         })
     }
@@ -26,33 +30,6 @@ export class Header {
             this.cardContainer.children[1].reset();
             this.removeBoardsInfo();
             createCleanSearch();
-        }
-    }
-
-    onHeaderClick = (event) => {
-        const {
-            target: {
-                dataset: { headerAction },
-            },
-        } = event;
-        switch (headerAction) {
-            case HeaderAction.openDropBoard:
-                const boardsList = document.getElementById('dropDownList');
-                boardsList.classList.toggle('show');
-                document.addEventListener('click', (event) => {
-                    const boardsBtn = document.getElementById('dropDownBtn');
-                    const withinBounderieas = event.composedPath().includes(boardsBtn);
-                    if (!withinBounderieas && boardsList.classList.contains('show')) {
-                        boardsList.classList.remove("show")
-                    }
-                })
-                break;
-            case HeaderAction.reload:
-                this.onHeaderAction(HeaderAction.reload);
-                break
-            case HeaderAction.cleanSearch:
-                this.onHeaderAction(HeaderAction.cleanSearch);
-                break
         }
     }
 

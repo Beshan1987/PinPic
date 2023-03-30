@@ -38,6 +38,7 @@ export class CardModel {
     constructor() {
         this.cards = [];
         this.searchCards = [];
+        this.authorPhotos = [];
         this.cardStorage = getSaveCards();
         this.cardStorageForbiddent = getForbiddenCards();
         this.cardContainer = document.querySelectorAll('div');
@@ -54,6 +55,12 @@ export class CardModel {
             .catch(err => errorPage(err))
     }
 
+    getAuthorData(url) {
+        return fetch(url)
+            .then((response) => response.json())
+            .catch(err => errorPage(err))
+    }
+
     getSearchData(url) {
         return fetch(url)
             .then((response) => response.json())
@@ -62,6 +69,14 @@ export class CardModel {
 
     setCards(cards) {
         this.cards = cards;
+    }
+
+    setAuthorCards(authorPhotos) {
+        this.authorPhotos = authorPhotos;
+    }
+
+    getAuthorCards() {
+        return this.authorPhotos.slice();
     }
 
     getCards() {
@@ -83,7 +98,7 @@ export class CardModel {
 
     saveLocal(name, id) {
         let nameBoard = { nameBoard: `${name}` }
-        this.cardStorage.push({ ...this.getCards().find(card => card.id === id), ...nameBoard, ...this.getCardsSearch().find(card => card.id === id), ...nameBoard });
+        this.cardStorage.push({ ...this.getCards().find(card => card.id === id), ...nameBoard, ...this.getCardsSearch().find(card => card.id === id), ...nameBoard, ...this.getAuthorCards().find(card => card.id === id), ...nameBoard });
         localStorage.setItem(LocalStorageKey.boards, JSON.stringify(this.cardStorage));
     }
 

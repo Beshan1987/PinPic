@@ -316,7 +316,15 @@ background-color: #fd7e14
   display: block;
   overflow: hidden;
   display: flex;  
+  transition: 0.4s;
 }
+
+.card-title:hover{
+  cursor: pointer;
+  color: #ffc107;
+  transition: 0.4s;
+}
+
 .card-text {
   height: 45px;
   display: block;

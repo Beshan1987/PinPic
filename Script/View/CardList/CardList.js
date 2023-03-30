@@ -13,6 +13,8 @@ export class CardList {
         onCardAction(target.dataset.cardAction, target.src);
       } else if (Object.values(CardAction).includes(target.dataset.cardAction)) {
         onCardAction(target.dataset.cardAction, target.id);
+      } else if (Object.values(CardAction).includes(target.dataset.cardAction && target.hasAttribute('name'))) {
+        onCardAction(target.dataset.cardAction, target.name);
       }
     });
   }
