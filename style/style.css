@@ -387,7 +387,7 @@ background-color: #fd7e14
   background-size: 50%;
 }
 
-#search-info, #board-info {  
+#search-info, #board-info, #author-info {  
   font-size: 1rem;
   margin-bottom: 0 !important;
   background-color: #ffc10777;

@@ -4,7 +4,7 @@ import { CardAction } from './basic_constants.js';
 import { ModalAction, boardNames, BoardsAction, HeaderAction } from './View/view_constants.js';
 import { ModalForm } from './View/ModalView/ModalForm.js';
 import { LocalStorageKey } from './Model/model_index.js';
-import { removeSearchElements, createCleanBtn, createReturnBtnMain, removeCleanBar, removeReturnBtn } from './View/view_utils.js';
+import { removeSearchElements, createCleanBtn, createReturnBtnMain, removeCleanBar, removeReturnBtn, removeAuthorInfo } from './View/view_utils.js';
 
 
 export class CardController {
@@ -60,6 +60,7 @@ export class CardController {
         }
         this.initialize();
         document.getElementById('search-input').style.display = 'block';
+        removeAuthorInfo();
     }
 
     assignNextURL() {
@@ -78,6 +79,7 @@ export class CardController {
     }
 
     async getSearch(searchURL) {
+        removeAuthorInfo();
         await this.model.getSearch(searchURL);
         this.view.renderCards(this.model.getCardsSearch());
         this.assignNextURL(this.model.pageURLs);
@@ -212,6 +214,7 @@ export class CardController {
     }
 
     returnMain = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         removeCleanBar();
         this.view.renderCards(this.model.getCards());
         this.view.removeBoardsInfo();
@@ -221,9 +224,11 @@ export class CardController {
             document.getElementById('returnMain').remove();
         }
         document.getElementById('search-input').style.display = 'block';
+        removeAuthorInfo();
     }
 
     returnToSearch = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         if (document.getElementById('cleanSearch')) {
             document.getElementById('cleanSearch').style.display = 'block';
         }
@@ -235,11 +240,10 @@ export class CardController {
             this.view.removeBoardsInfo();
             this.getSearch(this.model.getCurrentSearchPage());
         } else this.returnMain()
+        removeAuthorInfo();
     }
 
     cleanAllBoards = () => {
-        removeReturnBtn();
-        removeCleanBar();
         if (!this.model.getLocal() || this.model.getLocal().length === 0) {
             this.modalForm.openClearBoardsModalEmpty();
         }
@@ -252,6 +256,11 @@ export class CardController {
                 this.view.renderCards(this.model.getCards())
                 this.renderCountCardstart(boardNames);
                 this.view.removeBoardsInfo();
+                removeReturnBtn();
+                removeCleanBar();
+                removeAuthorInfo();
+                if (document.getElementById('search-input').style.display === 'none')
+                    document.getElementById('search-input').style.display = 'block';
             })
             document.getElementById('clear-boards-button-no').addEventListener('click', () => {
                 this.modalForm.clearBoardsModalFull.remove();
@@ -270,6 +279,8 @@ export class CardController {
     }
 
     loadBoard = (name) => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        removeAuthorInfo()
         document.getElementById('cleanBoard') ?
             document.getElementById('cleanBoard').remove() :
             createCleanBtn(name);
@@ -298,7 +309,8 @@ export class CardController {
                 document.getElementById('cleanBoard').remove()
             }
             this.view.renderEmptyList();
-            this.view.removeBoardsInfo(); this.view.renderBoardInfo(name, 0);
+            this.view.removeBoardsInfo();
+            this.view.renderBoardInfo(name, 0);
         }
         if (!document.getElementById('returnMain')) {
             createReturnBtnMain();
@@ -352,10 +364,17 @@ export class CardController {
     }
 
     getAuthorPhotos(searchURL) {
+        this.view.removeBoardsInfo();
+        removeAuthorInfo();
+        document.getElementById('search-input').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: "smooth" });
         this.model.getAuthorData(searchURL)
             .then(
                 data => {
                     this.model.setAuthorCards(data);
+                    console.log(this.model.getAuthorCards());
+                    console.log(searchURL);
+                    this.view.renderAuthorInfo(this.model.getAuthorCards()[0].user.name, this.model.getAuthorCards()[0].user.total_photos);
                     this.view.renderCards(this.model.getAuthorCards());
                     removeSearchElements();
                     removeCleanBar();
@@ -363,9 +382,12 @@ export class CardController {
         if (!document.getElementById('returnMain')) {
             createReturnBtnMain();
         }
+
+
     }
 
     initialize() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         this.model.getData()
             .then(
                 data => {

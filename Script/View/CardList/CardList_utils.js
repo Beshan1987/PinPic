@@ -57,3 +57,14 @@ export function createCard(cardParams, CardAction) {
 
    return card;
 }
+
+export function createAuthorInfo(authorName, number) {
+   const authorInfo = document.createElement('p');
+   authorInfo.setAttribute('id', 'author-info');
+   authorInfo.classList.add('search-info', 'container-sm', 'd-flex', 'justify-content-evenly');
+
+
+   authorInfo.textContent = `author "${authorName}" has [${number}] picture(s)`;
+
+   return authorInfo;
+}

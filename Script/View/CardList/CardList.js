@@ -1,4 +1,4 @@
-import { createCard } from './CardList_utils.js';
+import { createCard, createAuthorInfo } from './CardList_utils.js';
 import { CardAction } from '../../basic_constants.js';
 
 export class CardList {
@@ -37,6 +37,10 @@ export class CardList {
 
   renderEmptyList = () => {
     this.cardContainer.innerHTML = '';
+  }
+
+  renderAuthorInfo = (authorName, number) => {
+    document.getElementById('container-btn-board').after(createAuthorInfo(authorName, number));
   }
 
   openPhoto = (src) => {

@@ -186,6 +186,12 @@ export function removeSearchElements() {
     }
 }
 
+export function removeAuthorInfo() {
+    if (document.getElementById('author-info')) {
+        document.getElementById('author-info').remove();
+    }
+}
+
 export function removeCleanBar() {
     if (document.getElementById('cleanBoard')) {
         document.getElementById('cleanBoard').remove();

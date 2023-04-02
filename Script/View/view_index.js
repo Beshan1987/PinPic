@@ -48,6 +48,10 @@ export class View {
 		this.header.removeBoardsInfo();
 	}
 
+	renderAuthorInfo(autor, name) {
+		this.cardList.renderAuthorInfo(autor, name);
+	}
+
 	renderEmptyList() {
 		this.cardList.renderEmptyList();
 	}
